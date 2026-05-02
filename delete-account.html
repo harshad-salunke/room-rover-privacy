@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account – Room Rover</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <meta name="description" content="Request deletion of your Room Rover account and associated data." />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #F5F7FA;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1976D2 0%, #2196F3 60%, #42A5F5 100%);
+      color: #fff;
+      padding: 48px 24px 36px;
+      text-align: center;
+    }
+
+    header .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      margin-bottom: 16px;
+    }
+
+    header .logo-wrap svg {
+      width: 40px;
+      height: 40px;
+      fill: #fff;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    header h1 span {
+      color: #BBDEFB;
+    }
+
+    header p.tagline {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.80);
+    }
+
+    header .badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      border-radius: 999px;
+      padding: 4px 16px;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(33, 150, 243, 0.08);
+      padding: 32px 36px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1976D2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid #E3F2FD;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0;
+    }
+
+    .card ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #555;
+      font-size: 0.95rem;
+      padding: 5px 0;
+    }
+
+    .card ul li::before {
+      content: '';
+      display: inline-block;
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2196F3;
+      margin-top: 8px;
+    }
+
+    /* Steps */
+    .steps {
+      counter-reset: step;
+    }
+
+    .step {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: #2196F3;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .step-body h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .step-body p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+
+    /* Warning box */
+    .warn {
+      background: #FFF3E0;
+      border-left: 4px solid #FF9800;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.9rem;
+      color: #E65100;
+    }
+
+    /* Data table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #E3F2FD;
+      color: #1565C0;
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 14px;
+    }
+
+    td {
+      border-bottom: 1px solid #F0F0F0;
+      padding: 10px 14px;
+      color: #555;
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: linear-gradient(135deg, #E3F2FD, #fff);
+      border: 1.5px solid #BBDEFB;
+      border-radius: 16px;
+      padding: 28px 36px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .contact-card h2 {
+      color: #1976D2;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      margin-top: 12px;
+      background: #2196F3;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      color: #999;
+      font-size: 0.8rem;
+      padding: 24px 16px;
+    }
+
+    @media (max-width: 540px) {
+
+      .card,
+      .contact-card {
+        padding: 22px 18px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo-wrap">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </svg>
+    </div>
+    <h1>Room <span>Rover</span></h1>
+    <p class="tagline">Your PG, simplified.</p>
+    <div class="badge">🗑️ Account Deletion Request</div>
+  </header>
+
+  <main>
+
+    <!-- Intro -->
+    <div class="card">
+      <h2>📋 About This Page</h2>
+      <p>
+        This page applies to both <strong>Room Rover - Resident</strong> and
+        <strong>Room Rover - PG Owner</strong> Android applications, developed by
+        <strong style="color:#2196F3;">Harshad Salunke</strong>.
+      </p>
+      <p>
+        If you would like to request deletion of your account and associated data,
+        please follow the steps below. All requests are processed within
+        <strong>7 business days</strong>.
+      </p>
+    </div>
+
+    <!-- How to request deletion -->
+    <div class="card">
+      <h2>📱 Method 1: Delete Directly from the App (Recommended)</h2>
+      <p style="color:#555; font-size:0.95rem; margin-bottom:18px;">
+        The fastest way to delete your account is directly within the Room Rover app.
+        Follow these steps:
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Open the App & Log In</h3>
+            <p>Open the <strong>Room Rover - Resident</strong> app and log in with your registered mobile number.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Go to Your Profile</h3>
+            <p>Tap the <strong>Profile</strong> icon from the bottom navigation bar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Tap "Delete Account"</h3>
+            <p>Scroll to the bottom of your Profile page and tap the <strong>"Delete Account"</strong> option.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Submit Your Request</h3>
+            <p>Enter your reason for leaving and tap <strong>"Submit Deletion Request"</strong>. Your request is instantly sent to the PG Administrator for approval.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h3>Automatic Deletion</h3>
+            <p>Once approved by the PG Admin, your data is deleted immediately. If no action is taken, your account and all associated data are <strong>automatically and permanently deleted within 30 days</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fallback contact method -->
+    <div class="card">
+      <h2>📞 Method 2: Contact Us (If You Cannot Access the App)</h2>
+      <p style="color:#555; font-size:0.95rem; margin-bottom: 18px;">
+        If you are unable to access the app, you can request deletion by contacting us directly:
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Call or WhatsApp</h3>
+            <p>Reach us at <strong>+91 9359978498</strong> with your registered mobile number ready.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Verify Your Identity</h3>
+            <p>We will verify your identity via your registered phone number before processing any request.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Confirmation</h3>
+            <p>You will be notified once your account and data have been permanently deleted, within <strong>7 business days</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What gets deleted -->
+    <div class="card">
+      <h2>🗂️ What Data Is Deleted vs. Retained</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Action on Request</th>
+            <th>Retention Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Firebase Auth account (phone number)</td>
+            <td>✅ Permanently deleted</td>
+            <td>Immediately upon deletion</td>
+          </tr>
+          <tr>
+            <td>Resident profile (name, room, bed)</td>
+            <td>✅ Permanently deleted</td>
+            <td>Within 7 business days</td>
+          </tr>
+          <tr>
+            <td>Payment & rent history</td>
+            <td>✅ Permanently deleted</td>
+            <td>Within 7 business days</td>
+          </tr>
+          <tr>
+            <td>Service request tickets</td>
+            <td>✅ Permanently deleted</td>
+            <td>Within 7 business days</td>
+          </tr>
+          <tr>
+            <td>Amenity booking records</td>
+            <td>✅ Permanently deleted</td>
+            <td>Within 7 business days</td>
+          </tr>
+          <tr>
+            <td>FCM push notification token</td>
+            <td>✅ Permanently deleted</td>
+            <td>Immediately upon deletion</td>
+          </tr>
+          <tr>
+            <td>Anonymised app analytics logs</td>
+            <td>⏳ Retained (anonymised)</td>
+            <td>Up to 12 months (no PII)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <h2>📞 Contact Us to Delete Your Account</h2>
+      <p style="color:#555; font-size:0.95rem;">
+        Ready to request deletion? Reach out directly — we will process your request promptly.
+      </p>
+      <a href="tel:+919359978498">📱 Call / WhatsApp: +91 9359978498</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Room Rover. Developed by Harshad Salunke. All rights reserved.</p>
+    <p style="margin-top:6px;">
+      This page applies to <strong>Room Rover - PG Owner</strong> and
+      <strong>Room Rover - Resident</strong> Android applications.
+    </p>
+  </footer>
+
+</body>
+
+</html>
