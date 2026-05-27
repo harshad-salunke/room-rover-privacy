@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Room Rover PG Management Platform</title>
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <meta name="description" content="Simple, transparent pricing for Room Rover. Plans starting at ₹26 per bed per month. No hidden fees, no contracts.">
+    <meta name="keywords" content="Room Rover pricing, PG management cost, PG software price, hostel management pricing India">
+    <meta name="author" content="Harshad Salunke">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #2196F3;
+            --primary-dark: #1976D2;
+            --primary-light: #BBDEFB;
+            --secondary: #00BCD4;
+            --accent: #FFC107;
+            --success: #4CAF50;
+            --text-main: #2D3748;
+            --text-light: #718096;
+            --bg-light: #F5F7FA;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-soft: 0 10px 40px -10px rgba(33, 150, 243, 0.15);
+            --shadow-hover: 0 20px 40px -10px rgba(33, 150, 243, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
+
+        /* Animated background */
+        .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #e4effb 100%); }
+        .shape { position: absolute; filter: blur(80px); opacity: 0.6; animation: float 20s infinite ease-in-out alternate; }
+        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(33,150,243,0.25); border-radius: 50%; }
+        .shape-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: rgba(0,188,212,0.15); border-radius: 50%; animation-delay: -5s; }
+        .shape-3 { top: 40%; left: 50%; width: 30vw; height: 30vw; background: rgba(187,222,251,0.4); border-radius: 50%; animation-delay: -10s; }
+        @keyframes float { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(5%,10%) scale(1.1); } 100% { transform: translate(-5%,-5%) scale(0.9); } }
+
+        /* ===== NAVBAR ===== */
+        header { position: fixed; top: 0; width: 100%; padding: 20px 5%; z-index: 1000; transition: all 0.3s ease; }
+        header.scrolled { background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0,0,0,0.05); padding: 15px 5%; }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .logo-container { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-img { width: 50px; height: 50px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .logo-container:hover .logo-img { transform: scale(1.05) rotate(-5deg); }
+        .logo-text { font-size: 1.8rem; font-weight: 800; color: var(--primary-dark); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--secondary); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; font-size: 1.05rem; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .btn-nav-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white !important; padding: 10px 24px; border-radius: 50px; font-weight: 600 !important; box-shadow: 0 4px 15px rgba(33,150,243,0.4); transition: all 0.3s ease !important; }
+        .btn-nav-primary::after { display: none !important; }
+        .btn-nav-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(33,150,243,0.6); color: white !important; }
+        .hamburger { display: none; font-size: 1.8rem; color: var(--text-main); cursor: pointer; }
+
+        /* ===== HERO ===== */
+        .pricing-hero { padding: 160px 5% 80px; text-align: center; max-width: 1400px; margin: 0 auto; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: rgba(33,150,243,0.1); color: var(--primary); border-radius: 50px; font-weight: 600; font-size: 0.95rem; margin-bottom: 25px; border: 1px solid rgba(33,150,243,0.25); animation: fadeInDown 0.8s ease both; }
+        .pricing-hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); animation: fadeInDown 0.8s ease 0.1s both; }
+        .pricing-hero h1 span { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .pricing-hero p { font-size: 1.2rem; color: var(--text-light); max-width: 650px; margin: 0 auto 35px; animation: fadeInDown 0.8s ease 0.2s both; line-height: 1.8; }
+        .hero-pills { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; animation: fadeInDown 0.8s ease 0.3s both; }
+        .hero-pill { display: flex; align-items: center; gap: 8px; padding: 9px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: var(--text-main); box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .hero-pill i { color: var(--success); }
+
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ===== PRICING STARTING CALLOUT ===== */
+        .price-callout { background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--secondary)); padding: 50px 5%; text-align: center; color: white; position: relative; overflow: hidden; }
+        .price-callout::before { content: ''; position: absolute; top: -50%; left: -10%; width: 30%; height: 200%; background: rgba(255,255,255,0.06); transform: rotate(20deg); }
+        .price-callout-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+        .price-callout h2 { font-size: 2.8rem; font-weight: 900; margin-bottom: 12px; }
+        .price-callout h2 .highlight { background: var(--accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .price-callout p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* ===== PRICING CARDS ===== */
+        .pricing-section { padding: 100px 5%; }
+        .pricing-inner { max-width: 1400px; margin: 0 auto; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+        .pricing-card { background: white; border-radius: 28px; padding: 40px 28px; display: flex; flex-direction: column; transition: all 0.4s ease; box-shadow: var(--shadow-soft); position: relative; overflow: hidden; border: 2px solid transparent; }
+        .pricing-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-hover); border-color: var(--primary-light); }
+        .pricing-card.featured { background: linear-gradient(145deg, #0D47A1, #1565C0, #1976D2); color: white; transform: scale(1.04); box-shadow: 0 30px 70px rgba(33,150,243,0.5); border-color: transparent; }
+        .pricing-card.featured:hover { transform: scale(1.04) translateY(-12px); }
+
+        .ribbon { position: absolute; top: 24px; right: -30px; background: var(--accent); color: #5D4037; font-size: 0.7rem; font-weight: 900; padding: 7px 50px; transform: rotate(35deg); letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+        .ribbon.best-value { background: linear-gradient(135deg, #FF9800, #FF5722); color: white; }
+
+        .tier-tag { display: inline-block; padding: 7px 18px; border-radius: 50px; font-size: 0.78rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+        .tier-tag.starter { background: rgba(33,150,243,0.1); color: var(--primary); border: 1px solid rgba(33,150,243,0.25); }
+        .tier-tag.growth { background: rgba(0,188,212,0.1); color: #0097A7; border: 1px solid rgba(0,188,212,0.25); }
+        .tier-tag.professional { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); }
+        .tier-tag.enterprise { background: rgba(255,152,0,0.12); color: #E65100; border: 1px solid rgba(255,152,0,0.3); }
+
+        .card-bed-range { font-size: 0.92rem; color: var(--text-light); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .card-bed-range i { color: var(--primary); }
+        .pricing-card.featured .card-bed-range { color: rgba(255,255,255,0.75); }
+        .pricing-card.featured .card-bed-range i { color: rgba(255,255,255,0.9); }
+
+        .price-display { margin-bottom: 8px; display: flex; align-items: flex-start; gap: 4px; }
+        .price-currency { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text-main); margin-top: 10px; line-height: 1; }
+        .pricing-card.featured .price-currency { color: white; }
+        .price-amount { font-family: 'Outfit', sans-serif; font-size: 4.5rem; font-weight: 900; color: var(--text-main); line-height: 1; letter-spacing: -3px; }
+        .pricing-card.featured .price-amount { color: white; }
+        .price-unit { font-size: 0.85rem; color: var(--text-light); margin-bottom: 25px; }
+        .pricing-card.featured .price-unit { color: rgba(255,255,255,0.7); }
+
+        .divider { height: 1px; background: #edf2f7; margin: 22px 0; }
+        .pricing-card.featured .divider { background: rgba(255,255,255,0.2); }
+
+        .features-list { list-style: none; flex: 1; margin-bottom: 28px; }
+        .features-list li { padding: 8px 0; font-size: 0.9rem; color: var(--text-light); display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid #f8fafc; }
+        .features-list li:last-child { border-bottom: none; }
+        .pricing-card.featured .features-list li { color: rgba(255,255,255,0.9); border-bottom-color: rgba(255,255,255,0.1); }
+        .features-list li .check { color: var(--success); font-size: 0.9rem; margin-top: 1px; flex-shrink: 0; }
+        .pricing-card.featured .features-list li .check { color: var(--accent); }
+        .features-list li .feature-label { font-weight: 500; }
+        .features-list li.highlight-feature .feature-label { font-weight: 700; }
+        .pricing-card.featured .features-list li.highlight-feature .feature-label { color: var(--accent); }
+
+        .cta-button { display: block; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.97rem; text-align: center; transition: all 0.3s ease; margin-top: auto; }
+        .cta-button.default { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; box-shadow: 0 5px 18px rgba(33,150,243,0.35); }
+        .cta-button.default:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(33,150,243,0.5); }
+        .cta-button.featured-cta { background: white; color: var(--primary-dark); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .cta-button.featured-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+        .cta-button.enterprise-cta { background: linear-gradient(135deg, #FF9800, #FF5722); color: white; box-shadow: 0 5px 18px rgba(255,152,0,0.4); }
+        .cta-button.enterprise-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,152,0,0.5); }
+
+        /* Simplified card tagline */
+        .card-tagline { font-size: 0.9rem; color: var(--text-light); line-height: 1.75; text-align: left; padding: 16px 0; border-top: 1px solid #f1f5f9; margin-bottom: 24px; flex: 1; }
+        .pricing-card.featured .card-tagline { color: rgba(255,255,255,0.82); border-top-color: rgba(255,255,255,0.18); }
+        .card-bed-range { font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; background: var(--bg-light); padding: 6px 14px; border-radius: 50px; margin-bottom: 15px; color: var(--text-light); }
+        .pricing-card.featured .card-bed-range { background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.9); }
+
+        /* All Included grid */
+        .all-included-section { padding: 0 5% 80px; }
+        .all-included-wrap { background: white; border-radius: 28px; padding: 55px 50px; box-shadow: 0 10px 40px -10px rgba(33,150,243,0.15); max-width: 1400px; margin: 0 auto; border: 1px solid rgba(33,150,243,0.07); }
+        .all-included-header { text-align: center; margin-bottom: 45px; }
+        .all-included-header .ai-infinity { width: 65px; height: 65px; background: linear-gradient(135deg, #4CAF50, #81C784); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; color: white; margin: 0 auto 18px; box-shadow: 0 8px 20px rgba(76,175,80,0.3); }
+        .all-included-header h3 { font-size: 2rem; color: var(--text-main); margin-bottom: 10px; }
+        .all-included-header p { color: var(--text-light); font-size: 1rem; }
+        .all-included-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .ai-item { display: flex; align-items: center; gap: 12px; padding: 15px 18px; background: var(--bg-light); border-radius: 14px; font-size: 0.9rem; font-weight: 500; color: var(--text-main); transition: all 0.3s ease; border: 1px solid transparent; cursor: default; }
+        .ai-item:hover { border-color: var(--primary-light); background: #EBF5FB; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(33,150,243,0.1); }
+        .ai-item i { color: var(--primary); font-size: 1rem; width: 22px; text-align: center; flex-shrink: 0; }
+        @media (max-width: 1024px) { .all-included-grid { grid-template-columns: repeat(2, 1fr); } .all-included-wrap { padding: 35px 25px; } }
+        @media (max-width: 768px) { .all-included-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* ===== COMPARISON TABLE ===== */
+        .comparison-section { padding: 100px 5%; background: var(--white); }
+        .comparison-inner { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 3rem; color: var(--text-main); margin-bottom: 15px; }
+        .section-desc { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+        .comparison-table { width: 100%; border-collapse: collapse; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-soft); }
+        .comparison-table th { padding: 22px 16px; font-family: 'Outfit', sans-serif; font-size: 1rem; vertical-align: middle; }
+        .comparison-table th:first-child { text-align: left; background: #f8fafc; color: var(--text-main); font-weight: 700; }
+        .comparison-table th:not(:first-child) { background: var(--bg-light); color: var(--text-main); font-weight: 700; font-size: 0.93rem; text-align: center; border-left: 1px solid #edf2f7; }
+        .th-price-tag { display: inline-block; margin-top: 9px; padding: 5px 14px; background: rgba(33,150,243,0.1); color: var(--primary-dark); border-radius: 50px; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 900; border: 1px solid rgba(33,150,243,0.18); letter-spacing: -0.3px; }
+        .comparison-table td { padding: 15px 18px; border-bottom: 1px solid #f1f5f9; font-size: 0.93rem; }
+        .comparison-table td:first-child { color: var(--text-main); font-weight: 500; background: white; }
+        .comparison-table td:not(:first-child) { text-align: center; color: var(--text-light); background: white; border-left: 1px solid #f1f5f9; }
+        .comparison-table tr:hover td { background: #fafcff; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .check-yes { color: var(--success); font-size: 1.15rem; }
+        .check-no { color: #CBD5E0; font-size: 1.1rem; }
+        .check-partial { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+        .category-row td { background: linear-gradient(90deg, #f0f7ff, #f8fafc) !important; font-weight: 700; color: var(--primary-dark) !important; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; padding: 11px 18px; border-bottom: 1px solid #dbeafe !important; }
+        .table-equality-note { display: flex; align-items: center; gap: 16px; background: rgba(76,175,80,0.07); border: 1.5px solid rgba(76,175,80,0.25); border-radius: 16px; padding: 18px 24px; margin-bottom: 24px; }
+        .ten-icon { width: 46px; height: 46px; background: linear-gradient(135deg, #4CAF50, #81C784); border-radius: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; color: white; box-shadow: 0 4px 12px rgba(76,175,80,0.3); }
+        .ten-text strong { font-size: 0.95rem; color: var(--text-main); display: block; margin-bottom: 3px; }
+        .ten-text span { font-size: 0.83rem; color: var(--text-light); }
+
+        /* ===== VALUE PROPS ===== */
+        .value-section { padding: 80px 5%; }
+        .value-inner { max-width: 1400px; margin: 0 auto; }
+        .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .value-card { background: white; border-radius: 24px; padding: 40px 30px; box-shadow: var(--shadow-soft); transition: all 0.3s ease; border: 1px solid transparent; }
+        .value-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--primary-light); }
+        .value-icon { width: 65px; height: 65px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; margin-bottom: 20px; }
+        .value-icon.blue { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+        .value-icon.green { background: linear-gradient(135deg, #4CAF50, #81C784); color: white; }
+        .value-icon.orange { background: linear-gradient(135deg, #FF9800, #FFB74D); color: white; }
+        .value-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: var(--text-main); }
+        .value-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.8; }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section { padding: 100px 5%; background: var(--white); }
+        .faq-inner { max-width: 900px; margin: 0 auto; }
+        .faq-list { margin-top: 40px; }
+        .faq-item { background: var(--bg-light); border-radius: 16px; margin-bottom: 16px; overflow: hidden; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
+        .faq-item:hover { border-color: var(--primary-light); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 22px 28px; cursor: pointer; font-weight: 600; font-size: 1rem; color: var(--text-main); gap: 20px; }
+        .faq-question i { color: var(--primary); transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 28px; color: var(--text-light); font-size: 0.97rem; line-height: 1.8; }
+        .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner { margin: 60px 5% 80px; background: linear-gradient(135deg, var(--primary-dark), var(--secondary)); border-radius: 30px; padding: 70px 40px; text-align: center; color: white; box-shadow: 0 20px 40px rgba(33,150,243,0.35); position: relative; overflow: hidden; }
+        .cta-banner::before { content: ''; position: absolute; top: -50%; left: -20%; width: 50%; height: 200%; background: rgba(255,255,255,0.08); transform: rotate(30deg); }
+        .cta-banner h2 { font-size: 2.6rem; margin-bottom: 18px; position: relative; z-index: 1; }
+        .cta-banner p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+        .cta-store-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+        .store-btn { display: flex; align-items: center; gap: 12px; padding: 12px 24px; border-radius: 14px; text-decoration: none; transition: all 0.3s ease; }
+        .store-btn.light { background: white; color: var(--primary-dark); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .store-btn.light:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        .store-btn.outline { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.4); }
+        .store-btn.outline:hover { background: rgba(255,255,255,0.25); transform: translateY(-4px); }
+        .store-btn i { font-size: 26px; }
+        .store-btn-text { display: flex; flex-direction: column; text-align: left; }
+        .store-btn-text small { font-size: 0.7rem; font-weight: 500; opacity: 0.8; line-height: 1; }
+        .store-btn-text strong { font-size: 1.05rem; font-family: 'Outfit', sans-serif; font-weight: 700; line-height: 1.2; }
+
+        /* ===== FOOTER ===== */
+        footer { background: white; padding: 60px 5% 30px; border-top: 1px solid #edf2f7; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1400px; margin: 0 auto 40px; }
+        .footer-brand p { color: var(--text-light); max-width: 300px; margin-bottom: 20px; }
+        .social-links { display: flex; gap: 15px; }
+        .social-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-light); display: flex; align-items: center; justify-content: center; color: var(--text-main); text-decoration: none; transition: all 0.3s ease; }
+        .social-icon:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+        .footer-col h4 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 20px; font-weight: 700; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-light); text-decoration: none; transition: color 0.3s ease; font-size: 0.95rem; }
+        .footer-col ul li a:hover { color: var(--primary); }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 30px; border-top: 1px solid #edf2f7; text-align: center; color: var(--text-light); font-size: 0.9rem; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } .pricing-card.featured { transform: scale(1); } .pricing-card.featured:hover { transform: translateY(-12px); } }
+        @media (max-width: 1024px) { .footer-content { grid-template-columns: 1fr 1fr; } .value-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.82rem; } .comparison-table th, .comparison-table td { padding: 12px; } }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { position: absolute; top: 100%; left: 0; width: 100%; background: var(--glass-bg); backdrop-filter: blur(15px); flex-direction: column; padding: 30px 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 0.4s ease; }
+            .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .nav-links a { width: 100%; text-align: center; padding: 10px 0; }
+            .nav-links a::after { display: none; }
+            .pricing-hero h1 { font-size: 2.6rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.2rem; }
+            .price-callout h2 { font-size: 2rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .social-links { justify-content: center; }
+            .table-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 16px; }
+            .table-scroll-wrap::-webkit-scrollbar { height: 5px; }
+            .table-scroll-wrap::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+            .table-scroll-wrap::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 10px; }
+            .comparison-table { min-width: 580px; font-size: 0.78rem; }
+            .comparison-table th, .comparison-table td { padding: 10px 10px; }
+            .comparison-table th:first-child { min-width: 160px; }
+            .comparison-table th:not(:first-child) { min-width: 80px; }
+            .th-price-tag { font-size: 0.72rem; padding: 3px 8px; margin-top: 6px; }
+            .table-equality-note { padding: 14px 16px; gap: 12px; }
+            .ten-icon { width: 38px; height: 38px; font-size: 1rem; }
+            .ten-text strong { font-size: 0.88rem; }
+            .ten-text span { font-size: 0.78rem; }
+            .mobile-scroll-hint { display: flex; align-items: center; gap: 8px; color: var(--text-light); font-size: 0.78rem; margin-bottom: 10px; }
+            .cta-store-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="navbar">
+        <nav>
+            <a href="index.html" class="logo-container">
+                <img src="logo.png" alt="Room Rover Logo" class="logo-img" onerror="this.src='https://ui-avatars.com/api/?name=RR&background=2196F3&color=fff&size=128&rounded=true'">
+                <div class="logo-text">Room<span>Rover</span></div>
+            </a>
+            <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html#apps">Features</a>
+                <a href="index.html#platform">Platform</a>
+                <a href="pricing.html" style="color:var(--primary); font-weight:700;">Pricing</a>
+                <a href="index.html#contact">Register PG</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="https://play.google.com/store/apps/details?id=com.codevizer.pg_owner" target="_blank" class="btn-nav-primary">Download App</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== PRICING HERO ===== -->
+    <section class="pricing-hero">
+        <div class="hero-badge"><i class="fas fa-tag"></i> Simple, Honest Pricing</div>
+        <h1>Pay Only For What <span>You Actually Use</span></h1>
+        <p>Room Rover charges per bed, not per feature. Every plan includes the full platform — mobile app, web dashboard, cloud sync, and real-time data. No surprises, ever.</p>
+        <div class="hero-pills">
+            <span class="hero-pill"><i class="fas fa-check-circle"></i> All Features Included</span>
+            <span class="hero-pill"><i class="fas fa-check-circle"></i> No Setup Fees</span>
+            <span class="hero-pill"><i class="fas fa-check-circle"></i> No Hidden Charges</span>
+            <span class="hero-pill"><i class="fas fa-check-circle"></i> Cancel Anytime</span>
+            <span class="hero-pill"><i class="fas fa-check-circle"></i> Free Onboarding</span>
+        </div>
+    </section>
+
+    <!-- ===== PRICE CALLOUT ===== -->
+    <div class="price-callout">
+        <div class="price-callout-inner">
+            <h2>Plans start at just <span class="highlight">₹26 per bed / month</span></h2>
+            <p>Every plan includes all features — the only difference is your per-bed price based on PG size.</p>
+        </div>
+    </div>
+
+    <!-- ===== ALL FEATURES BANNER ===== -->
+    <div style="padding: 50px 5% 0;">
+        <div style="background:rgba(76,175,80,0.07); border:1.5px solid rgba(76,175,80,0.3); border-radius:20px; padding:24px 40px; text-align:center; max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;">
+            <i class="fas fa-infinity" style="font-size:2.2rem; color:#4CAF50; flex-shrink:0;"></i>
+            <div style="text-align:left;">
+                <strong style="font-size:1.1rem; color:#2D3748; display:block; margin-bottom:4px;">Every Plan Includes Every Feature — No Exceptions</strong>
+                <span style="color:#718096; font-size:0.92rem;">No feature tiers, no add-ons, no upsells. Your plan is determined purely by your PG size. Bigger PG = lower per-bed cost.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PRICING CARDS ===== -->
+    <section class="pricing-section">
+        <div class="pricing-inner">
+            <div class="pricing-grid">
+
+                <!-- STARTER -->
+                <div class="pricing-card" data-animate>
+                    <span class="tier-tag starter">⚡ Starter</span>
+                    <div class="card-bed-range"><i class="fas fa-bed"></i> PG Size: 1 – 50 Beds</div>
+                    <div class="price-display">
+                        <span class="price-currency">₹</span>
+                        <span class="price-amount">35</span>
+                    </div>
+                    <div class="price-unit">per bed / month</div>
+                    <p class="card-tagline">Perfect for small, independent PGs just getting started with smart digital management. Everything included, nothing locked away.</p>
+                    <a href="index.html#contact" class="cta-button default">Get Started →</a>
+                </div>
+
+                <!-- GROWTH -->
+                <div class="pricing-card" data-animate>
+                    <span class="tier-tag growth">🚀 Growth</span>
+                    <div class="card-bed-range"><i class="fas fa-bed"></i> PG Size: 51 – 100 Beds</div>
+                    <div class="price-display">
+                        <span class="price-currency">₹</span>
+                        <span class="price-amount">32</span>
+                    </div>
+                    <div class="price-unit">per bed / month</div>
+                    <p class="card-tagline">Ideal for growing properties with more residents. The complete platform — you simply pay less per bed as you scale up.</p>
+                    <a href="index.html#contact" class="cta-button default">Get Started →</a>
+                </div>
+
+                <!-- PROFESSIONAL (FEATURED) -->
+                <div class="pricing-card featured" data-animate>
+                    <div class="ribbon">Most Popular</div>
+                    <span class="tier-tag professional">🏆 Professional</span>
+                    <div class="card-bed-range"><i class="fas fa-bed"></i> PG Size: 101 – 200 Beds</div>
+                    <div class="price-display">
+                        <span class="price-currency" style="color:white;">₹</span>
+                        <span class="price-amount" style="color:white;">29</span>
+                    </div>
+                    <div class="price-unit">per bed / month</div>
+                    <p class="card-tagline">Built for established, multi-floor PG operations. Full platform access — all features, significant savings per bed.</p>
+                    <a href="index.html#contact" class="cta-button featured-cta">Get Started →</a>
+                </div>
+
+                <!-- ENTERPRISE -->
+                <div class="pricing-card" data-animate>
+                    <div class="ribbon best-value">Best Value</div>
+                    <span class="tier-tag enterprise">💎 Enterprise</span>
+                    <div class="card-bed-range"><i class="fas fa-bed"></i> PG Size: 200+ Beds</div>
+                    <div class="price-display">
+                        <span class="price-currency">₹</span>
+                        <span class="price-amount">26</span>
+                    </div>
+                    <div class="price-unit">per bed / month</div>
+                    <p class="card-tagline">Maximum scale, minimum per-bed cost. The best value on the market for large-scale PG operations.</p>
+                    <a href="index.html#contact" class="cta-button enterprise-cta">Contact Us →</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ALL FEATURES INCLUDED ===== -->
+    <section class="all-included-section">
+        <div class="all-included-wrap">
+            <div class="all-included-header">
+                <div class="ai-infinity"><i class="fas fa-infinity"></i></div>
+                <h3>Everything Included in Every Plan</h3>
+                <p>No feature tiers. No add-ons. No surprises. Every Room Rover plan gives you the complete platform — the only variable is your per-bed price.</p>
+            </div>
+            <div class="all-included-grid">
+                <div class="ai-item"><i class="fab fa-android"></i><span>Android Owner App</span></div>
+                <div class="ai-item"><i class="fab fa-android"></i><span>Resident App (free)</span></div>
+                <div class="ai-item"><i class="fas fa-globe"></i><span>Web Dashboard</span></div>
+                <div class="ai-item"><i class="fas fa-cloud"></i><span>Real-time Cloud Sync</span></div>
+                <div class="ai-item"><i class="fas fa-rupee-sign"></i><span>Rent Collection</span></div>
+                <div class="ai-item"><i class="fas fa-bell"></i><span>Auto-Reminders</span></div>
+                <div class="ai-item"><i class="fas fa-bed"></i><span>Room Occupancy Map</span></div>
+                <div class="ai-item"><i class="fas fa-chart-line"></i><span>Profit & Loss Reports</span></div>
+                <div class="ai-item"><i class="fas fa-receipt"></i><span>Expense Tracking</span></div>
+                <div class="ai-item"><i class="fas fa-tools"></i><span>Service Requests</span></div>
+                <div class="ai-item"><i class="fas fa-utensils"></i><span>Food Menu Management</span></div>
+                <div class="ai-item"><i class="fas fa-tshirt"></i><span>Washing Machine Booking</span></div>
+                <div class="ai-item"><i class="fas fa-door-open"></i><span>Outpass System</span></div>
+                <div class="ai-item"><i class="fas fa-user-shield"></i><span>Role-based Staff Access</span></div>
+                <div class="ai-item"><i class="fas fa-building"></i><span>Multi-floor Management</span></div>
+                <div class="ai-item"><i class="fas fa-hands-helping"></i><span>Free Onboarding</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VALUE PROPS ===== -->
+    <section class="value-section">
+        <div class="value-inner">
+            <div class="section-header">
+                <h2 class="section-title">Why PG Owners Choose Room Rover</h2>
+                <p class="section-desc">Built by someone who understands the real problems of running a PG — not just a generic SaaS.</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card" data-animate>
+                    <div class="value-icon blue"><i class="fas fa-rupee-sign"></i></div>
+                    <h3>Rent Collection, Automated</h3>
+                    <p>Residents pay directly through the app. You get real-time payment alerts, automatic reminders, and full collection history — all without a single WhatsApp message.</p>
+                </div>
+                <div class="value-card" data-animate>
+                    <div class="value-icon green"><i class="fas fa-chart-line"></i></div>
+                    <h3>Know Your Numbers, Always</h3>
+                    <p>Profit/loss reports, occupancy rates, expense breakdowns, and monthly KPIs — all in one dashboard. Make smarter decisions with data you can actually trust.</p>
+                </div>
+                <div class="value-card" data-animate>
+                    <div class="value-icon orange"><i class="fas fa-users"></i></div>
+                    <h3>Residents Love It Too</h3>
+                    <p>Happy residents stay longer. With the dedicated Resident App — rent tracking, service requests, outpasses, menu updates — they feel taken care of every day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPARISON TABLE ===== -->
+    <section class="comparison-section">
+        <div class="comparison-inner">
+            <div class="section-header">
+                <h2 class="section-title">All Features. Every Plan. Always.</h2>
+                <p class="section-desc">Every plan includes the complete platform. No feature tiers, no add-ons. Your price only changes based on your PG size.</p>
+            </div>
+
+            <!-- Equality note above table -->
+            <div class="table-equality-note">
+                <div class="ten-icon"><i class="fas fa-check-double"></i></div>
+                <div class="ten-text">
+                    <strong>Every ✓ below is identical across all plans</strong>
+                    <span>This table shows what you <em>get</em> — not what you're missing. All plans are identical in features. Only the per-bed price differs.</span>
+                </div>
+            </div>
+
+            <p class="mobile-scroll-hint" id="scrollHint" style="display:none;"><i class="fas fa-hand-point-right"></i> Swipe left to see all plans →</p>
+            <div class="table-scroll-wrap">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>
+                            ⚡ Starter<br>
+                            <small style="font-weight:500;color:#718096;">1–50 Beds</small><br>
+                            <span class="th-price-tag">₹35 /bed</span>
+                        </th>
+                        <th>
+                            🚀 Growth<br>
+                            <small style="font-weight:500;color:#718096;">51–100 Beds</small><br>
+                            <span class="th-price-tag">₹32 /bed</span>
+                        </th>
+                        <th>
+                            🏆 Professional<br>
+                            <small style="font-weight:500;color:#718096;">101–200 Beds</small><br>
+                            <span class="th-price-tag">₹29 /bed</span>
+                        </th>
+                        <th>
+                            💎 Enterprise<br>
+                            <small style="font-weight:500;color:#718096;">200+ Beds</small><br>
+                            <span class="th-price-tag">₹26 /bed</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="category-row" colspan="5">📱 Core Apps & Platform</td></tr>
+                    <tr><td>Full Android Owner App</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Android Resident App (free for residents)</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Web Dashboard Access</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Cloud Sync (Real-time)</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+
+                    <tr><td class="category-row" colspan="5">💰 Rent & Finance</td></tr>
+                    <tr><td>Rent collection & UPI tracking</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Auto rent reminders</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Profit & loss analysis</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Daily expense tracking</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Monthly financial reports</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+
+                    <tr><td class="category-row" colspan="5">🏠 Room & Resident Management</td></tr>
+                    <tr><td>Visual room occupancy map</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Resident onboarding portal</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Multi-floor management</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Role-based staff access</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Inventory assignment tracking</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+
+                    <tr><td class="category-row" colspan="5">🛎️ Resident Features</td></tr>
+                    <tr><td>Service request system</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Food menu management</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Washing machine booking</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Outpass request system</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+
+                    <tr><td class="category-row" colspan="5">🔔 Notifications & Support</td></tr>
+                    <tr><td>Push notifications</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Custom notification templates</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Floor-wise announcements</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                    <tr><td>Free onboarding assistance</td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td><td><i class="fas fa-check-circle check-yes"></i></td></tr>
+                </tbody>
+            </table>
+            </div><!-- /table-scroll-wrap -->
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq-section">
+        <div class="faq-inner">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-desc">Everything you need to know before getting started.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        How is the per-bed pricing calculated?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Pricing is based on the total number of beds registered in your PG. For example, if you have 80 beds, you fall under the Growth plan at ₹32/bed — so your monthly cost is ₹2,560. The more beds you have, the lower your per-bed rate. All beds in your PG are counted, regardless of whether they're occupied.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Is there a free trial available?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We offer a free onboarding and setup period to help you get started. Contact us directly via email or phone and we'll walk you through the platform before you commit. We want you to be confident before paying a single rupee.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        What happens if my PG grows and crosses a tier?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Great news — your price per bed actually goes down as you grow! When you cross a tier threshold (e.g., from 50 to 51 beds), your entire account moves to the new, lower per-bed rate. You are automatically rewarded for scaling with Room Rover.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Do residents need to pay anything?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        No. The Resident App is completely free for your residents to download and use. There are no charges for residents. Only the PG owner pays the subscription, and only for the beds they manage.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Is my data secure on Room Rover?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. All your data is encrypted, stored securely in the cloud, and backed up automatically. We use industry-standard security practices. Your resident data, payment records, and property information are private and protected at all times.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Can I use Room Rover on my laptop or PC?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Room Rover includes a full web dashboard that works on any browser — Chrome, Safari, Edge, Firefox. Whether you're on a laptop, desktop, or tablet, you get the same powerful management experience. The Android app is available on Play Store for mobile use.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        How do I get started?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Simply contact us via email at harshadsalunke2002@gmail.com or call us at +91 93599 78498. We'll onboard your PG, set up your rooms and resident accounts, and have you live within 24 hours. Getting started is completely free with our assisted onboarding.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <div class="cta-banner">
+        <h2>Start Managing Smarter Today</h2>
+        <p>Join growing PGs across India who've automated their rent collection, delighted their residents, and taken back their time — starting at just ₹26/bed.</p>
+        <div class="cta-store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.codevizr.pg_resident" target="_blank" class="store-btn light">
+                <i class="fab fa-google-play" style="color:var(--primary-dark);"></i>
+                <div class="store-btn-text" style="color:var(--primary-dark);"><small style="color:var(--text-light);">GET IT ON</small><strong>For Residents</strong></div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.codevizer.pg_owner" target="_blank" class="store-btn outline">
+                <i class="fab fa-google-play"></i>
+                <div class="store-btn-text"><small>GET IT ON</small><strong>For Owners</strong></div>
+            </a>
+            <a href="index.html#contact" class="store-btn outline">
+                <i class="fas fa-phone-alt"></i>
+                <div class="store-btn-text"><small>SPEAK TO US</small><strong>Register PG</strong></div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-container" style="display:flex; align-items:center; gap:10px; text-decoration:none; margin-bottom:15px;">
+                    <img src="logo.png" alt="Logo" style="width:40px; border-radius:8px;" onerror="this.src='https://ui-avatars.com/api/?name=RR&background=2196F3&color=fff&rounded=true'">
+                    <span style="font-size:1.5rem; font-weight:800; color:var(--primary-dark);">Room<span style="color:var(--secondary);">Rover</span></span>
+                </a>
+                <p>The comprehensive SaaS platform modernizing Paying Guest accommodations across India. Available on Android, Web & Cloud.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="index.html#apps">Features</a></li>
+                    <li><a href="index.html#platform">Web & Cloud</a></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=com.codevizer.pg_owner" target="_blank">Owner App</a></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=com.codevizr.pg_resident" target="_blank">Resident App</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Privacy</h4>
+                <ul>
+                    <li><a href="pricing.html" style="color:var(--primary); font-weight:600;">Pricing</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="delete-account.html">Delete Account / Data</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="mailto:harshadsalunke2002@gmail.com" style="display:flex; align-items:center; gap:8px;"><i class="fas fa-envelope"></i> harshadsalunke2002@gmail.com</a></li>
+                    <li><a href="tel:+919359978498" style="display:flex; align-items:center; gap:8px;"><i class="fas fa-phone-alt"></i> +91 93599 78498</a></li>
+                    <li style="color:var(--text-light); margin-top:15px;">Developed by<br><strong style="color:var(--text-main);">Harshad Salunke</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Room Rover. Developed by Harshad Salunke. All rights reserved. &nbsp;·&nbsp; Available on Android, Web & Cloud.
+        </div>
+    </footer>
+
+    <script>
+        // Show swipe hint only on mobile
+        if (window.innerWidth <= 768) {
+            const hint = document.getElementById('scrollHint');
+            if (hint) hint.style.display = 'flex';
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // FAQ toggle
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        }
+
+        // Scroll-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-animate], .value-card, .faq-item').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(25px)';
+            el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
